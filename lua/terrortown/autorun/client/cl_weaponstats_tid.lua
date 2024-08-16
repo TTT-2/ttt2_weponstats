@@ -64,15 +64,11 @@ local function GetRecoilLangString(weapon)
 end
 
 local function GetDamage(weapon)
-	local damage = weapon.Primary.Damage
+	local damage = weapon.Primary.Damage or weapon.Damage
 
-	if damage ~= nil then return damage end
+	if damage == nil then return "N/A" end
 
-	damage = weapon.Damage
-
-	if damage ~= nil then return damage end
-
-	return "N/A"
+	return damage * (weapon.damageScaling or 1)
 end
 
 local function GetDelay(weapon)
